@@ -31,11 +31,11 @@ for cluster_info in data['hosts'].values():
         break
 
 if not has_user:
-    logging.info('В файле info.json нет пользователей или у ключей "user" нет значений')
+    logging.info(f'В файле {filename} нет пользователей или у ключей "user" нет значений')
     exit()
 
 if not has_host:
-    logging.info('В файле info.json нет хостов или у ключей "host" нет значений')
+    logging.info(f'В файле {filename} нет хостов или у ключей "host" нет значений')
     exit()
 
 
@@ -61,5 +61,5 @@ for cluster_name, cluster_info in data['hosts'].items():
         except Exception as e:
             logging.info(f'Ошибка при подключении к серверу {host_name} с пользователем {user_name}: {e}')
 
-with open('info.json', 'w') as f:
+with open(f'{filename}', 'w') as f:
     json.dump(data, f, indent=4)
